@@ -12,6 +12,7 @@ setuptools.setup(
                                                "tests.*", "tests"]),
     install_requires=[
         'ftd2xx',
+        'pyconfighandler@git+https://github.com/robertpuccinelli/PyConfigHandler#egg=pyconfighandler'
     ],
     test_suite="tests",
     classifiers=[
