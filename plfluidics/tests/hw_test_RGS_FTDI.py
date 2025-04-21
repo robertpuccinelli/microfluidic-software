@@ -33,8 +33,10 @@ device.write(command('A',0)) # Setup
 
 for i in range(0,24):
     device.write(command('H',i))
-    sleep(0.01)
+#    sleep(0.01)
+    input('Press enter close valve {} '.format(i))
 
 for i in range(0,24):
     device.write(command('L',i))
-    sleep(0.02)
+#    sleep(0.02)
+    input('Press enter close valve {} '.format(i))

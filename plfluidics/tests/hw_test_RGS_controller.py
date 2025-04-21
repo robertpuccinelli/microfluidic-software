@@ -2,7 +2,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
 from time import sleep
-from plfluidics.valve_controller import ValveControllerRGS
+from plfluidics.server.valve_controller import ValveControllerRGS
 
 cdir = os.path.dirname(os.path.abspath(__file__))
 ndir = os.path.join(cdir, "logs")
@@ -22,20 +22,19 @@ logger.addHandler(handler_file)
 logger.info('Beginning script : HW Test RGS Controller')
 
 valves = []
-valve_names = ['OUT', 'IN', 'WASH', 'BSA', 'STREP', 'AB', 'EXTRA', 'PHAGE', 'WASTE', 'P1', 'P2', 'P3']
 
-for i in range(len(valve_names)):
-    valves.append([i,False,False,valve_names[i]])
+for i in range(0,24):
+    valves.append([i,False,False,'V'+str(i)])
 
 VCRGS = ValveControllerRGS(valves)
 
 logger.info('Opening valves sequentially.')
-for valve in valve_names:
-    VCRGS.setValvesOpen([valve])
+for valve in valves:
+    VCRGS.setValvesOpen([valve[3]])
     sleep(0.01)
 
 logger.info('Closing valves sequentially.')
-for valve in valve_names:
-    input('Press enter close valve {} '.format(valve))
-    VCRGS.setValvesClosed([valve])
+for valve in valves:
+    VCRGS.setValvesClosed([valve[3]])
+    sleep(0.01)
 

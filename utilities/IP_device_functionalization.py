@@ -2,7 +2,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
 from time import sleep
-from plfluidics.valve_controller import ValveControllerRGS
+from plfluidics.server.valve_controller import ValveControllerRGS
 
 cdir = os.path.dirname(os.path.abspath(__file__))
 ndir = os.path.join(cdir, "logs")
